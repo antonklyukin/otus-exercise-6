@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  website:
+    container_name: my-blog-web
+    build: 
+      context: .
+      dockerfile: ./Dockerfile.webapp
+    environment:
+      PYTHONUNBUFFERED: 'true'
+    depends_on:
+      - pg_db
+    ports:
+      - 5000:5000
+    restart: always
+
+  pg_db:
+    container_name: my-blog-db
+    build: 
+      context: .
+      dockerfile: ./Dockerfile.postgres      
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+volumes: 
+  pg_data:
