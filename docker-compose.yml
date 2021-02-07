@@ -6,8 +6,8 @@ services:
     build: 
       context: .
       dockerfile: ./Dockerfile.webapp
-    environment:
-      PYTHONUNBUFFERED: 'true'
+    volumes:
+      - ./my-blog:/my-blog
     depends_on:
       - pg_db
     ports:

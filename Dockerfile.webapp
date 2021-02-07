@@ -7,10 +7,12 @@ RUN mkdir -p ${INSTALL_PATH}
 WORKDIR ${INSTALL_PATH}
 
 COPY requirements.txt requirements.txt
+COPY ./my-blog/. ${INSTALL_PATH}
+
 RUN pip install -r requirements.txt
 
 EXPOSE 5000
 
-COPY ./my-blog/. .
+
 
 CMD python app.py
